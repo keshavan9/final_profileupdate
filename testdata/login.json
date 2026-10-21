@@ -1,6 +1,6 @@
 {
-  "URL": "https://www.naukri.com/",
-  "Username": "your-email@example.com",
-  "Password": "your-password",
+  "loginUrl": "https://login.naukri.com/nLogin/Login.php",
+  "Username": "venkeshav@gmail.com",
+  "Password": "Password@123",
   "title": "Jobs - Recruitment - Job Search - Employment - Job Vacancies - Naukri.com"
 }

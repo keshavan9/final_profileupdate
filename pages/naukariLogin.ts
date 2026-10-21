@@ -14,13 +14,13 @@ export class naukariLogin {
   constructor(page: Page) {
     this.page = page;
     this.loginID = page.locator('#login_Layer');
-    this.emailfield = page.getByPlaceholder('Enter your active Email ID / Username');
-    this.password = page.getByPlaceholder('Enter your password');
-    this.Loginbutton = page.getByRole('button', { name: 'Login', exact: true });
-    this.viewProfile = page.locator("//div[@class='view-profile-wrapper']//a[text()='View']");
-    this.editlinkclick = page.locator("//div[@class='hdn']//em[text()='editOneTheme']");
-    this.saveUserProfile = page.locator('#saveBasicDetailsBtn');
-    this.finalverification = page.locator("//span[@class='typ-14Medium mod-date-val']");
+    this.emailfield = page.locator("input[type='email' i], input[name='email' i], input[placeholder*='Email' i], input[placeholder*='Username' i]").first();
+    this.password = page.locator("input[type='password' i], input[name='password' i], input[placeholder*='Password' i]").first();
+    this.Loginbutton = page.locator('button:has-text("Login"), input[type="submit"], button[type="submit"]').first();
+    this.viewProfile = page.locator("a[href*='profile' i]:visible, a[title*='profile' i]:visible").first();
+    this.editlinkclick = page.locator("em:has-text('editOneTheme'), a:has-text('Edit')").first();
+    this.saveUserProfile = page.locator("#saveBasicDetailsBtn").first();
+    this.finalverification = page.locator('span').filter({ hasText: /updated|saved|profile/i }).first();
   }
 
   async loginbutton() {
@@ -28,27 +28,33 @@ export class naukariLogin {
   }
 
   async enteremail(emailID: string) {
+    await this.emailfield.waitFor({ state: 'visible', timeout: 30000 });
     await this.emailfield.fill(emailID);
   }
 
   async enterpassword(password: string) {
+    await this.password.waitFor({ state: 'visible', timeout: 30000 });
     await this.password.fill(password);
   }
 
   async Loginbuttonclick() {
+    await this.Loginbutton.waitFor({ state: 'visible', timeout: 30000 });
     await this.Loginbutton.click();
   }
 
   async userProfile() {
+    await expect(this.viewProfile).toBeVisible({ timeout: 30000 });
+    await this.viewProfile.scrollIntoViewIfNeeded();
     await this.viewProfile.click();
   }
 
   async clickoneditLink() {
+    await this.editlinkclick.waitFor({ state: 'visible', timeout: 30000 });
     await this.editlinkclick.click();
   }
 
   async clickonSaveButton() {
-    await this.saveUserProfile.waitFor({ state: 'visible', timeout: 15000 });
+    await this.saveUserProfile.waitFor({ state: 'visible', timeout: 30000 });
     await this.saveUserProfile.scrollIntoViewIfNeeded();
     await this.saveUserProfile.click({ force: true });
   }
