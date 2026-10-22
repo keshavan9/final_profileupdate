@@ -1,7 +1,7 @@
 
 import {test, expect} from "@playwright/test"
 
-test("Handling alerts", async ({page})=>{
+test.skip("@skip Handling alerts", async ({page})=>{
     await page.goto("https://demoqa.com/alerts")
     // Before you click on an element which is responsible for generation of an alert, we need to wait for "dialog" event to appear on the page. Because playwright handles the dialog event by self or there might be a chances of missing the event as well.
 

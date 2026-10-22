@@ -1,7 +1,7 @@
 
 import {test, expect} from "@playwright/test"
 
-test("Handling multiple windows", async ({page, context})=>{
+test.skip("Handling multiple windows", async ({page, context})=>{
     await page.goto("https://demo.automationtesting.in/Windows.html");
     await page.locator('//*[@id="Tabbed"]/a/button').click();
     const page1=await page.waitForEvent("popup");

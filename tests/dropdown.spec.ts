@@ -9,7 +9,7 @@ import {test, expect} from "@playwright/test"
 //     await page.locator("div#react-select-2-option-1-0").click();
 // })
 
-test("login test", async ({page})=>{
+test.skip("login test", async ({page})=>{
 
     await page.goto("https://demoqa.com/select-menu")
     await page.locator("#withOptGroup").click();

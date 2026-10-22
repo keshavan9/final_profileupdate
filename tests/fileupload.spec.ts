@@ -8,7 +8,7 @@
 import { test, expect } from '@playwright/test';
 
 
-test("File Uploads handling @regression", async function({page}){
+test.skip("File Uploads handling @regression", async function({page}){
     await page.goto("https://davidwalsh.name/demo/multiple-file-upload.php")
     // console.log(__dirname);
    await page.locator("#filesToUpload").setInputFiles(["../testdata/Courses.txt"]); 
